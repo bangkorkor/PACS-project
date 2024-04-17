@@ -1,48 +1,35 @@
-// odmodel.h
 #ifndef ODMODEL_H
 #define ODMODEL_H
 
-#include <vector>
 #include <string>
-#include <functional>
-#include <memory>
+#include <vector>
+#include <map>
+#include <Eigen/Dense> // Include Eigen for vector and matrix operations
 
-class odmodel
+class ODModel
 {
-public:
-    odmodel(std::string num_type, std::vector<double> points, odmodel *prev_mod, std::function<void(odmodel &)> phys_mod,
-            int npl = 0, std::string plt = "", bool verbose = false);
-
-    virtual ~odmodel();
-
-    // Getters
-    int getNplanets() const { return nplanets; }
-    std::string getPlanetType() const { return planet_type; }
-    std::vector<double> getPoints() const { return pts; }
-
 private:
-    bool verbose;
-    std::string type;
-    int nplanets;
-    std::string planet_type;
-    std::vector<double> pts;
-    double dx;                               // Change in position between points
-    double u;                                // velocity
-    double T;                                // Temperature
-    double phi;                              // filling factor
-    double gradp;                            // pressure gradient
-    double tot_gradp;                        // total pressure gradient
-    double p;                                // pressure
-    double qt;                               // local viscous heating
-    double q0;                               // local natural flux
-    odmodel *prev;                           // pointer to the previous module
-    odmodel *next;                           // pointer to the next module
-    std::function<void(odmodel &)> phys_mod; // Function to update physics
+    std::string _screwFilename;
+    std::string _dbFilename;
+    std::string _srdbFilename;
+    std::string _interpType;
+    double rpmC;
+    int _flowRate;
+    int tin;
+    int tsun;
+    int tring1;
+    int tring2;
+    int tring3;
+    std::vector<std::string> spindlesTypes;
+    std::vector<int> spindlesNum;
+    std::vector<double> stopringDiam;
+    std::map<std::string, Eigen::VectorXd> results; // Store results in a map
 
-    // Function pointers or std::function for updates
-    std::function<void()> update_T;
-    std::function<void()> update_p;
-    std::function<void()> update_phi;
+public:
+    odmodel();               // Constructor declaration
+    void generate_results(); // Assumes data to process is internally managed or simulated
+    void read_db();
+    void read_screw();
 };
 
 #endif // ODMODEL_H
