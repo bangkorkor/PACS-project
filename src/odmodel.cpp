@@ -5,72 +5,31 @@
 #include <Eigen/Dense>
 
 // Constructor implementation
-odmodel::odmodel() : rpmC(-100.0), _flowRate(150), tin(20), tsun(20), tring1(50), tring2(50), tring3(50)
+odmodel::odmodel()
 {
-    _screwFilename = "";
-    _dbFilename = "";
-    _srdbFilename = "";
-    _interpType = "";
-
-    std::cout << "ODModel initialized" << std::endl;
+    std::cout << "odmodel init" << std::endl;
+    _screwfilename = "";
+    _dbfilename = "";
+    _srdbfilename = "";
+    _interp_type = "";
+    rpm_c = -100.0;
+    _flowrate = 150;
+    tin = 20;
+    tsun = 20;
+    tring1 = 50;
+    tring2 = 50;
+    tring3 = 50;
 }
 
-void odmodel::generate_results()
-{
-    // For demonstration, let's assume some data is already set
-    std::cout << "generate 1D fields" << std::endl;
-
-    // This is a placeholder for where you would handle data from a machine or simulation
-    Eigen::VectorXd z = Eigen::VectorXd::LinSpaced(100, 0, 99); // Dummy data generation
-    results["z"] = z;                                           // Storing results in a map
-
-    // You would also process and store other metrics like pressure, temperature etc.
-    // Here we simply log a message
-    std::cout << "Results generated and stored" << std::endl;
-}
-
-void odmodel::read_db()
-{
-    std::ifstream file(_dbFilename);
-    if (!file)
-    {
-        std::cerr << "Failed to open database file: " << _dbFilename << std::endl;
-        return;
-    }
-    std::string line;
-    // Assuming first line is header
-    getline(file, line); // Skip header
-
-    // Read data lines
-    while (getline(file, line))
-    {
-        std::cout << "Reading line: " << line << std::endl;
-        // Here you would process each line
-    }
-
-    file.close();
-    std::cout << "Database file read successfully." << std::endl;
-}
-
-void odmodel::read_screw()
-{
-    std::ifstream file(_screwFilename);
-    if (!file)
-    {
-        std::cerr << "Failed to open screw configuration file: " << _screwFilename << std::endl;
-        return;
-    }
-    std::string line;
-    getline(file, line); // Read header
-    std::cout << "Header: " << line << std::endl;
-
-    // Read data lines
-    while (getline(file, line))
-    {
-        std::cout << "Reading screw setup line: " << line << std::endl;
-        // Process each screw setup line
-    }
-
-    file.close();
-    std::cout << "Screw configuration file read successfully." << std::endl;
-}
+// Setters implementation
+void odmodel::setScrewfilename(const std::string &filename) { _screwfilename = filename; }
+void odmodel::setDbfilename(const std::string &filename) { _dbfilename = filename; }
+void odmodel::setSrdbfilename(const std::string &filename) { _srdbfilename = filename; }
+void odmodel::setInterp_type(const std::string &type) { _interp_type = type; }
+void odmodel::setRpm_c(double rpm) { rpm_c = rpm; }
+void odmodel::setFlowRate(int flowRate) { _flowrate = flowRate; }
+void odmodel::setTin(int temperature) { tin = temperature; }
+void odmodel::setTsun(int temperature) { tsun = temperature; }
+void odmodel::setTring1(int temperature) { tring1 = temperature; }
+void odmodel::setTring2(int temperature) { tring2 = temperature; }
+void odmodel::setTring3(int temperature) { tring3 = temperature; }

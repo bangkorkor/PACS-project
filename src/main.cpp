@@ -1,28 +1,32 @@
 #include "odmodel.hpp"
-#include <iostream>
-#include <functional>
 
 int main()
 {
-    // Example data for initialization
-    std::string num_type = "mixer";
-    std::vector<double> points = {0.0, 1.0, 2.0, 3.0}; // Sample points
-    odmodel *prev_mod = nullptr;                       // No previous module in this example
-    std::function<void(odmodel &)> phys_mod = [](odmodel &mod)
-    {
-        // Placeholder for a physical model update function
-        std::cout << "Updating physical model" << std::endl;
-    };
+    odmodel od1;
 
-    // Initialize odmodel object
-    odmodel model(num_type, points, prev_mod, phys_mod);
+    od1.setScrewfilename("screwfile.txt");
+    od1.setDbfilename("dbfile.txt");
+    od1.setSrdbfilename("srdbfile.txt");
+    od1.setInterp_type("linear");
+    od1.setRpm_c(100.0);
+    od1.setFlowRate(200);
+    od1.setTin(30);
+    od1.setTsun(30);
+    od1.setTring1(60);
+    od1.setTring2(60);
+    od1.setTring3(60);
 
-    // Accessing and printing values
-    std::cout << "Type of numerical module: " << num_type << std::endl;
-    std::cout << "First point: " << points[0] << std::endl;
-    std::cout << "Second point: " << points[1] << std::endl;
-    std::cout << "Number of planets: " << model.getNplanets() << std::endl; // Assuming a getter exists
-    std::cout << "Planet type:" << model.getPlanetType() << std::endl;      // Assuming a getter exists
+    std::cout << "Screw file name: " << od1.getScrewfilename() << std::endl;
+    std::cout << "Db file name: " << od1.getDbfilename() << std::endl;
+    std::cout << "Srdb file name: " << od1.getSrdbfilename() << std::endl;
+    std::cout << "Interpolation type: " << od1.getInterp_type() << std::endl;
+    std::cout << "Rpm_c: " << od1.getRpm_c() << std::endl;
+    std::cout << "Flow rate: " << od1.getFlowRate() << std::endl;
+    std::cout << "Tin: " << od1.getTin() << std::endl;
+    std::cout << "Tsun: " << od1.getTsun() << std::endl;
+    std::cout << "Tring1: " << od1.getTring1() << std::endl;
+    std::cout << "Tring2: " << od1.getTring2() << std::endl;
+    std::cout << "Tring3: " << od1.getTring3() << std::endl;
 
     return 0;
 }
