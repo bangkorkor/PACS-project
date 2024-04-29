@@ -34,6 +34,7 @@ private:
 
 public:
     class processParameter;
+    class phys_mod;
 
     odmodel(); // Constructor declaration
 
