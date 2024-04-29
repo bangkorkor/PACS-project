@@ -4,7 +4,7 @@
 #include <iostream>
 
 // Include the header where ODModel is declared.
-#include "ODModel.hpp"
+#include "odmodel.hpp"
 
 // Now define the nested class ProcessParameter within the ODModel scope.
 class odmodel::processParameter
@@ -20,10 +20,7 @@ private:
 
 public:
     // Constructor
-    processParameter(double vel, double q, double tsun, double tring)
-        : vel(vel), q(q), tsun(tsun), tring(tring), vdot(q / 3600.0 / 1200.0), rho(1200),
-          cp([this](double tb)
-             { return 1561 + 2.6 * tb; }) {}
+    processParameter(double vel, double q, double tsun, double tring);
 
     // Methods
     std::vector<double> getCoord();
