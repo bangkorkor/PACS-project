@@ -4,7 +4,7 @@ int main()
 {
     odmodel od1;
 
-    od1.setScrewfilename("screwfile.txt");
+    od1.setScrewfilename("data/machine.csv");
     od1.setDbfilename("dbfile.txt");
     od1.setSrdbfilename("srdbfile.txt");
     od1.setInterp_type("linear");
@@ -27,6 +27,9 @@ int main()
     std::cout << "Tring1: " << od1.getTring1() << std::endl;
     std::cout << "Tring2: " << od1.getTring2() << std::endl;
     std::cout << "Tring3: " << od1.getTring3() << std::endl;
+
+    od1.read_screw();
+    od1.printMixerDescr();
 
     return 0;
 }

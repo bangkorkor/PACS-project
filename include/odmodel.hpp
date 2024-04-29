@@ -23,6 +23,8 @@ private:
     int tring2;                 // temperature of barrel 2
     int tring3;                 // temperature of barrel 3
 
+    std::vector<std::vector<std::map<std::string, std::string>>> mixer_descr; // Mixer description
+
     std::vector<std::string> spindles_types;         // Spindle types
     std::vector<int> spindles_num;                   // Number of spindles
     std::vector<int> stopring_diam;                  // Stop ring diameter
@@ -31,7 +33,7 @@ private:
 public:
     odmodel(); // Constructor declaration
 
-        // setters:
+    // setters:
     void setScrewfilename(const std::string &filename);
     void setDbfilename(const std::string &filename);
     void setSrdbfilename(const std::string &filename);
@@ -56,6 +58,9 @@ public:
     int getTring1() const { return tring1; }
     int getTring2() const { return tring2; }
     int getTring3() const { return tring3; }
+
+    void read_screw();
+    void printMixerDescr();
 };
 
 #endif // ODMODEL_H
