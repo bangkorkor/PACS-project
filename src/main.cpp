@@ -1,4 +1,5 @@
 #include "odmodel.hpp"
+#include "processParameter.hpp"
 
 int main()
 {
@@ -7,7 +8,7 @@ int main()
     od1.setScrewfilename("data/machine.csv");
     od1.setDbfilename("dbfile.txt");
     od1.setSrdbfilename("srdbfile.txt");
-    od1.setInterp_type("linear");
+    od1.setInterp_type("LS linear"); // Unstructured linear, LS linear, LS bilinear, LS quadratic
     od1.setRpm_c(100.0);
     od1.setFlowRate(200);
     od1.setTin(30);
@@ -30,6 +31,16 @@ int main()
 
     od1.read_screw();
     od1.printMixerDescr();
+
+    odmodel::processParameter process(1200, 800, 300, 250);
+    auto coords = process.getCoord();
+    std::cout << "RPM: " << coords[0] << ", MassFlowRate: " << coords[1]
+              << ", TSun: " << coords[2] << ", TRing: " << coords[3] << std::endl;
+
+    double temperature = 350;
+    std::cout << "Cp at " << temperature << " K: " << process.calculateCp(temperature) << std::endl;
+
+    return 0;
 
     return 0;
 }

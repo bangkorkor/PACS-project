@@ -11,7 +11,7 @@ BUILDDIR=build
 TARGET=$(BUILDDIR)/main
 
 # Source files
-SRCS=src/odmodel.cpp src/main.cpp
+SRCS=src/odmodel.cpp src/main.cpp src/processParameter.cpp
 
 # Object files (stored in the build directory)
 OBJS=$(SRCS:src/%.cpp=$(BUILDDIR)/%.o)

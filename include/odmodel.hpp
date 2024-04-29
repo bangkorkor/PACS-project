@@ -1,6 +1,8 @@
 #ifndef ODMODEL_H
 #define ODMODEL_H
 
+#pragma once
+
 #include <string>
 #include <vector>
 #include <map>
@@ -31,6 +33,8 @@ private:
     std::unordered_map<std::string, double> results; //
 
 public:
+    class processParameter;
+
     odmodel(); // Constructor declaration
 
     // setters:
