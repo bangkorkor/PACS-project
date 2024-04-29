@@ -15,34 +15,27 @@ public:
         class interpolator_op
         {
         public:
-            // constructor
-            interp_safe();
-            interp();
+            void printtest();
 
         private:
-        }
-
-        // constructor
-
-        void
-        set_db();
+        };
+        void set_db();
         void __energy_balance();
         void __add_dtemp();
         void __add_dp();
         void __compute_phi();
 
-        private;
-
-    }
-
-    class full_db
-    {
-    public:
-        // constructor
     private:
-    }
+    };
 
-    void set_db;
+    // Constructor
+    phys_mod();
+
+    void printSomething()
+    {
+        std::cout << "Printing something" << std::endl;
+    }
 
 private:
+    std::string name = "phys_mod";
 };

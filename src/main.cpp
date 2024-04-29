@@ -1,5 +1,6 @@
 #include "odmodel.hpp"
 #include "processParameter.hpp"
+#include "phys_mod.hpp"
 
 int main()
 {
@@ -16,6 +17,8 @@ int main()
     od1.setTring1(60);
     od1.setTring2(60);
     od1.setTring3(60);
+
+    // testing ---------
 
     std::cout << "Screw file name: " << od1.getScrewfilename() << std::endl;
     std::cout << "Db file name: " << od1.getDbfilename() << std::endl;
@@ -40,7 +43,8 @@ int main()
     double temperature = 350;
     std::cout << "Cp at " << temperature << " K: " << process.calculateCp(temperature) << std::endl;
 
-    return 0;
+    odmodel::phys_mod::num_mod::interpolator_op test1;
+    test1.printtest();
 
     return 0;
 }
