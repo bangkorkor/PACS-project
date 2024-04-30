@@ -33,5 +33,11 @@ int main()
 
     // testInterpolator();
 
+    // Example usage
+    Eigen::MatrixXd data(10, 2); // Sample data matrix
+    data << 1, 1, 2, 1, 3, 2, 4, 2, 5, 1, 6, 1, 7, 2, 8, 2, 9, 1, 10, 2;
+    odmodel::phys_mod::num_mod num1("mix", Eigen::VectorXd::LinSpaced(10, 0, 9), nullptr, true);
+    num1.set_db(data);
+
     return 0;
 }

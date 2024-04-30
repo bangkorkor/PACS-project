@@ -30,7 +30,7 @@ public:
             std::vector<std::string> coordLabels = {"TIn", "RPM", "MassFlowRate", "TSun", "TRing"};
         };
 
-        num_mod(std::string num_type, Eigen::VectorXd points, NumMod *prev_mod, bool verbose = false); // Constructor
+        num_mod(std::string num_type, Eigen::VectorXd points, odmodel::phys_mod::num_mod *prev_mod, bool verbose = false); // Constructor
 
         void set_db(const Eigen::MatrixXd &df);
         void energy_balance(double t_prev);
