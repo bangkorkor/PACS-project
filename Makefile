@@ -2,7 +2,10 @@
 CXX=g++
 
 # Compiler flags
-CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc)
+CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc) -I${mkGslInc} -Wno-deprecated-enum-enum-conversion
+
+# Linker flags
+LDFLAGS=-L${mkGslLib} -lgsl -lgslcblas
 
 # Directory for built executables and objects
 BUILDDIR=build
@@ -25,7 +28,7 @@ $(BUILDDIR):
 
 # Rule for linking the final executable
 $(TARGET): $(OBJS) | $(BUILDDIR)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
 
 # Rule for compiling source files to object files
 $(BUILDDIR)/%.o: src/%.cpp | $(BUILDDIR)

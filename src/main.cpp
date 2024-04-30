@@ -1,6 +1,7 @@
 #include "odmodel.hpp"
 #include "processParameter.hpp"
 #include "phys_mod.hpp"
+#include "phys_mod.hpp"
 #include "test.cpp"
 
 int main()
@@ -10,7 +11,7 @@ int main()
     od1.setScrewfilename("data/machine.csv");
     od1.setDbfilename("dbfile.txt");
     od1.setSrdbfilename("srdbfile.txt");
-    od1.setInterp_type("LS linear"); // Unstructured linear, LS linear, LS bilinear, LS quadratic
+    od1.setInterp_type("LS linear"); // Unstructured linear, LS linear, LS bilinear or LS quadratic
     od1.setRpm_c(100.0);
     od1.setFlowRate(200);
     od1.setTin(30);
@@ -21,16 +22,16 @@ int main()
 
     // testing ---------
 
-    testSettersGetters(od1);
+    // testSettersGetters(od1);
 
-    testReadScrew(od1);
+    // testReadScrew(od1);
 
-    odmodel::processParameter process(1200, 800, 300, 250);
-    testProcessParameterInnit(process);
-    testProcessParameterCp(process);
+    // odmodel::processParameter process(1200, 800, 300, 250);
 
-    //     odmodel::phys_mod::num_mod::interpolator_op test1;
-    //     test1.printtest();
+    // testProcessParameterInnit(process);
+    // testProcessParameterCp(process);
+
+    // testInterpolator();
 
     return 0;
 }
