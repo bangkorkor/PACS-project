@@ -15,7 +15,7 @@ public:
     class num_mod
     {
     public:
-        class interpolator_op // NOT COMPLETE, I DONT UNDERSTAND THIS
+        class interpolator_op // NOT COMPLETE, I DONT UNDERSTAND THIS, see comments at phys_mod.cpp for more
         {
         public:
             interpolator_op(const Eigen::MatrixXd &data); // Constructor

@@ -1,14 +1,13 @@
 #include "phys_mod.hpp"
 
-// -------------interpolatorOP class:-----------------
-//
+// -------------interpolator_op class:-----------------
 //
 // NOT COMPLETE, I DONT UNDERSTAND THIS
 //
+// TODO: add other interpolation methods in the interp function, see python file
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 // constructor
-
 odmodel::phys_mod::num_mod::interpolator_op::interpolator_op(const Eigen::MatrixXd &data)
 {
     coord = data.block(0, 0, data.rows(), coordLabels.size()); // Assuming data columns match labels
@@ -73,3 +72,5 @@ double odmodel::phys_mod::num_mod::interpolator_op::interp_safe(int varIndex, do
 
     return nearestValue;
 }
+
+// -------------num_mod class:-----------------
