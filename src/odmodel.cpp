@@ -93,3 +93,51 @@ void odmodel::printMixerDescr()
         std::cout << "=============" << std::endl;
     }
 }
+
+void odmodel::RequestData()
+{
+    std::cout << "REQUEST DATA" << std::endl;
+
+    read_screw();      // read the screw file
+    printMixerDescr(); // only for visualization
+    std::cout << mixer_descr.size() << std::endl;
+
+    std::vector<phys_mod> ph_m;
+
+    for (size_t count = 0; count < mixer_descr.size(); ++count)
+    {
+        int numb_of_tring = 0;
+        if (count == 0)
+        {
+            numb_of_tring = tring1;
+        }
+        else if (count == 1)
+        {
+            numb_of_tring = tring2;
+        }
+        else if (count == 2)
+        {
+            numb_of_tring = tring3;
+        }
+        else
+        {
+            std::cerr << "WARNING: a maximum of three modules is allowed for temperature of ring\n";
+            std::cerr << "Setting temperature of modules > 3 to temperature of module 3\n";
+            tring = tring3;
+        }
+
+        auto wc = processParameter(rpm_c, _flowrate, tsun + 273.0, tring + 273.0);
+
+        phys_mod ph(wc, mixer_descr[count], numb_of_tring);
+
+        if (count == 0)
+        {
+            ph_m.emplace_back("module " + std::to_string(count), wc, mixer_descr[count]);
+        }
+        else
+        {
+            std::vector<double> shift; // Implement shift logic if necessary
+            ph_m.emplace_back("module " + std::to_string(count), wc, mixer_descr[count], shift);
+        }
+    }
+}

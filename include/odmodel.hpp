@@ -66,6 +66,8 @@ public:
 
     void read_screw();
     void printMixerDescr();
+
+    void RequestData();
 };
 
 #endif // ODMODEL_H
