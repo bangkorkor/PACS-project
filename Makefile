@@ -14,7 +14,7 @@ BUILDDIR=build
 TARGET=$(BUILDDIR)/main
 
 # Source files
-SRCS=src/odmodel.cpp src/main.cpp src/processParameter.cpp src/phys_mod.cpp
+SRCS= src/main.cpp src/phys_mod.cpp src/num_mod.cpp src/mixer.cpp
 
 # Object files (stored in the build directory)
 OBJS=$(SRCS:src/%.cpp=$(BUILDDIR)/%.o)
@@ -33,6 +33,10 @@ $(TARGET): $(OBJS) | $(BUILDDIR)
 # Rule for compiling source files to object files
 $(BUILDDIR)/%.o: src/%.cpp | $(BUILDDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Run the built executable
+run: $(TARGET)
+	./$(TARGET)
 
 # Clean up by removing files in build directory, but not the directory itself
 clean:
