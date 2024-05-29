@@ -5,14 +5,11 @@
 
 int main()
 {
-    phys_mod pm;
-    pm.print_phys_mod();
+    phys_mod model(40);
 
-    num_mod nm;
-    nm.print_num_mod();
+    model.simulate_model();
 
-    mixer mx;
-    mx.print_mixer();
+    model.print_model();
 
     return 0;
 };
