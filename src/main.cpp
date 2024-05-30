@@ -12,10 +12,9 @@ int main(int argc, char **argv) {
     mixer m(number_of_phys_mods, number_of_num_mods);
 
     double t0 = command_line("t0",293);
-    double p0 = command_line("p0",0);
     double RPM = command_line("RPM",100);
     double Q = command_line("Q",150);
-    m.set_parameters(t0, p0, RPM, Q);
+    m.set_parameters(t0, RPM, Q);
 
     m.simulate_mixer();
     m.print_mixer();
