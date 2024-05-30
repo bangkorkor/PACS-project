@@ -4,15 +4,9 @@
 // constructor
 phys_mod::phys_mod(size_t size)
 {
-    model.reserve(size); // Reserve the necessary space to prevent reallocations
     for (size_t i = 0; i < size; i++)
     {
-        model.emplace_back(i); // Construct num_mod objects in-place. emplace_back constructs the num_mod objects directly within the space allocated by the vector.
-        if (i > 0)
-        {
-            model[i].set_prev(&model[i - 1]);
-            model[i - 1].set_next(&model[i]);
-        }
+        model.push_back(num_mod(i));
     }
 }
 

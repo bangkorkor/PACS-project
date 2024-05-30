@@ -10,11 +10,9 @@ using namespace std;
 class num_mod
 {
 private:
-    const int id;  // id of the model
-    double t;      // temperature
-    double p;      // pressure
-    num_mod *prev; // pointer to previous model
-    num_mod *next; // pointer to next model
+    const int id; // id of the model
+    double t;     // temperature
+    double p;     // pressure
 
 public:
     // constructor
@@ -26,8 +24,6 @@ public:
     double get_p();
     void set_t(double t);
     void set_p(double p);
-    void set_prev(num_mod *prev);
-    void set_next(num_mod *next);
 
     // other functions
     void print_num_mod();
