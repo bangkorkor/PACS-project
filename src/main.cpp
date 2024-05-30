@@ -5,11 +5,9 @@
 
 int main()
 {
-    phys_mod model(40);
+    mixer m(2, 40);
 
-    model.simulate_model();
-
-    model.print_model();
+    m.print_mixer();
 
     return 0;
 };

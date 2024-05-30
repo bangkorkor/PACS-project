@@ -22,11 +22,10 @@ public:
 
     // other functions
     void make_model(size_t n);
-    void print_model();
-    num_mod &operator[](size_t i); // retuns the num_mod at index i using [] operator
+    void print_phys_mod();
 
     // function where the model is simulated
-    void simulate_model();
+    void simulate_phys_mod();
     void update_p();
     void update_t();
 };
