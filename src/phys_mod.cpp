@@ -2,7 +2,7 @@
 #include <cmath>
 
 // constructor
-phys_mod::phys_mod(size_t size) : RPM(100), Q(150)
+phys_mod::phys_mod(size_t size)
 {
     model.reserve(size); // Reserve the necessary space to prevent reallocations
     for (size_t i = 0; i < size; i++)
@@ -22,6 +22,14 @@ void phys_mod::set_tIn(double tIn) { this->tIn = tIn; }
 double phys_mod::get_tIn() { return tIn; }
 
 double phys_mod::get_tOut() { return model[model.size() - 1].get_t(); }
+
+void phys_mod::set_RPM(double RPM) { this->RPM = RPM; }
+
+double phys_mod::get_RPM() { return RPM; }
+
+void phys_mod::set_Q(double Q) { this->Q = Q; }
+
+double phys_mod::get_Q() { return Q; }
 
 // Other functions
 void phys_mod::print_phys_mod()

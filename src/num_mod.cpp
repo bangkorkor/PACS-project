@@ -2,7 +2,7 @@
 
 // constructor
 num_mod::num_mod(int id) // inititaly sets temperature to 273 and pressure to 0
-    : id(id), t(293), p(0), prev(nullptr), next(nullptr)
+    : id(id), prev(nullptr), next(nullptr)
 {
 }
 

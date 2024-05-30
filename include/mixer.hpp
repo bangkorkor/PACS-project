@@ -10,8 +10,8 @@ class mixer
 {
 private:
     vector<phys_mod> screw;
-    double t_0 = 293; // initial temperature of the fluid
-    double p_0 = 0;   // initial pressure of the fluid
+    double t_0; // initial temperature of the fluid
+    double p_0; // initial pressure of the fluid
 
 public:
     // constructor
@@ -21,6 +21,7 @@ public:
     void print_mixer();
 
     // function where the model is simulated
+    void set_parameters(double t0, double p0, double RPM, double Q);
     void simulate_mixer();
 };
 

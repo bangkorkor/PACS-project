@@ -17,6 +17,17 @@ void mixer::print_mixer()
     }
 }
 
+void mixer::set_parameters(double t0, double p0, double RPM, double Q)
+{
+    t_0 = t0;
+    p_0 = p0;
+    for (size_t i = 0; i < screw.size(); i++)
+    {
+        screw[i].set_RPM(RPM);
+        screw[i].set_Q(Q);
+    }
+}
+
 void mixer::simulate_mixer()
 {
     for (size_t i = 0; i < screw.size(); i++)
