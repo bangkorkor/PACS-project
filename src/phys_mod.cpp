@@ -29,13 +29,11 @@ void phys_mod::print_phys_mod()
 // function for simulating the model
 void phys_mod::simulate_phys_mod()
 {
-    for (size_t i = 0; i < 50; i++)
-    {
-        update_t();
-    }
-    for (size_t i = 0; i < 1; i++)
+    size_t iterations = 10;
+    for (size_t i = 0; i < iterations; i++)
     {
         update_p();
+        update_t();
     }
 }
 
@@ -53,7 +51,7 @@ void phys_mod::update_p()
         }
         else
         {
-            new_p = model[i + 1].get_p() - (10000 * RPM + 2000 * (250 - Q)) * ((450 - model[i].get_t()) / 150);
+            new_p = model[i + 1].get_p() - (800 * RPM + 500 * (250 - Q)) * ((450 - model[i].get_t()) / 150);
         }
         if (new_p < 0)
         {

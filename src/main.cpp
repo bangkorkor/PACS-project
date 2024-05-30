@@ -5,9 +5,9 @@
 
 int main()
 {
-    mixer m(2, 40);
-
-    m.print_mixer();
+    phys_mod pm(40);
+    pm.simulate_phys_mod();
+    pm.print_phys_mod();
 
     return 0;
 };
