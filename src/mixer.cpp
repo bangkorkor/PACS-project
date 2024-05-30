@@ -8,6 +8,9 @@ mixer::mixer(size_t number_pm, size_t number_nn)
     }
 }
 
+// getter 
+vector<phys_mod> mixer::get_screw(){return screw;}      // is needed for vizulize class
+
 void mixer::print_mixer()
 {
     cout << "------Mixer:------" << endl;

@@ -14,7 +14,7 @@ BUILDDIR=build
 TARGET=$(BUILDDIR)/main
 
 # Source files
-SRCS= src/main.cpp src/phys_mod.cpp src/num_mod.cpp src/mixer.cpp
+SRCS= src/main.cpp src/phys_mod.cpp src/num_mod.cpp src/mixer.cpp src/visualize.cpp
 
 # Object files (stored in the build directory)
 OBJS=$(SRCS:src/%.cpp=$(BUILDDIR)/%.o)

@@ -25,6 +25,8 @@ void phys_mod::set_Q(double Q) { this->Q = Q; }
 
 double phys_mod::get_Q() { return Q; }
 
+vector<num_mod> phys_mod::get_model() { return model; }
+
 // Other functions
 void phys_mod::print_phys_mod()
 {

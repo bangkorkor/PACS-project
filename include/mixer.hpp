@@ -17,6 +17,9 @@ public:
     // constructor
     mixer(size_t number_pm, size_t number_nn);
 
+    // getters and setters
+    vector<phys_mod> get_screw();
+
     // other functions
     void print_mixer();
 

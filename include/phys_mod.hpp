@@ -29,6 +29,7 @@ public:
     double get_RPM();
     void set_Q(double Q);
     double get_Q();
+    vector<num_mod> get_model(); // getter for the model, this is used in visualize
 
     // other functions
     void make_model(size_t n);
