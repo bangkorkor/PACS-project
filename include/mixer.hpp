@@ -10,6 +10,8 @@ class mixer
 {
 private:
     vector<phys_mod> screw;
+    double t_0 = 293; // initial temperature of the fluid
+    double p_0 = 0;   // initial pressure of the fluid
 
 public:
     // constructor

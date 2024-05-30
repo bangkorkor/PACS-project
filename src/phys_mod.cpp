@@ -16,6 +16,14 @@ phys_mod::phys_mod(size_t size) : RPM(100), Q(150)
     }
 }
 
+// getters and setters
+void phys_mod::set_tIn(double tIn) { this->tIn = tIn; }
+
+double phys_mod::get_tIn() { return tIn; }
+
+double phys_mod::get_tOut() { return model[model.size() - 1].get_t(); }
+
+// Other functions
 void phys_mod::print_phys_mod()
 {
     cout << "Printing model:" << endl;
@@ -42,7 +50,7 @@ void phys_mod::update_p()
 {
 
     // starting from the last element, going backwards
-    for (int i = model.size(); i >= 0; i--)
+    for (int i = model.size() - 1; i >= 0; i--)
     {
         double new_p = 0;                            // new computed pressure for the given num_mod
         if (i == static_cast<int>(model.size()) - 1) // STOPRING! the last element of the phys_mod is the stopring
@@ -64,7 +72,7 @@ void phys_mod::update_p()
 // function for updating temperature
 void phys_mod::update_t()
 {
-    double tIn = 293; // initial temperature
+
     // starting from the first element, going forwards
     for (size_t i = 0; i < model.size(); i++)
     {

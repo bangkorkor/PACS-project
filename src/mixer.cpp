@@ -21,6 +21,14 @@ void mixer::simulate_mixer()
 {
     for (size_t i = 0; i < screw.size(); i++)
     {
+        if (i == 0)
+        {
+            screw[i].set_tIn(t_0);
+        }
+        else
+        {
+            screw[i].set_tIn(screw[i - 1].get_tOut());
+        }
         screw[i].simulate_phys_mod();
     }
 }
