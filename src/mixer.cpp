@@ -57,6 +57,11 @@ void mixer::simulate_mixer()
     for (size_t i = 0; i < screw.size(); i++)
         {
         screw[i].update_t();
+        // update the temperature of the incoming fluid
+        if (i < screw.size() - 1)
+        {
+            screw[i + 1].set_tIn(screw[i].get_tOut());
+            }
         }
     }
     
