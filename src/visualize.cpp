@@ -23,7 +23,7 @@ void visualize::vizualize_screw()
 
     std::ofstream file("build/plotting_data.csv"); // opens file
 
-    // writes csv file
+    // step 1: writes csv file
     if (file.is_open())
     {
         file << "t,p\n"; // Header for CSV

@@ -16,6 +16,8 @@ private:
     double RPM;            // RPM of the ring in the phys_mod, this is the same for all the num_mods in the given phys_mod
     double Q;              // flow rate in the phys_mod, this is the same for all the num_mods in the given phys_mod
     double tIn;            // temperature of the incoming fluid
+    string type;           // type of the phys_mod, what type of formula
+    string SRtype;         // type of the SR, what type o formula for Stopring
 
 public:
     // constructor
@@ -29,6 +31,10 @@ public:
     double get_RPM();
     void set_Q(double Q);
     double get_Q();
+    void set_type(string type);
+    string get_type();
+    void set_SRtype(string SRtype);
+    string get_SRtype();
     vector<num_mod> get_model(); // getter for the model, this is used in visualize
 
     // other functions

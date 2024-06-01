@@ -25,6 +25,14 @@ void phys_mod::set_Q(double Q) { this->Q = Q; }
 
 double phys_mod::get_Q() { return Q; }
 
+void phys_mod::set_type(string type) { this->type = type; }
+
+string phys_mod::get_type() { return type; }
+
+void phys_mod::set_SRtype(string SRtype) { this->SRtype = SRtype; }
+
+string phys_mod::get_SRtype() { return SRtype; }
+
 vector<num_mod> phys_mod::get_model() { return model; }
 
 // Other functions
@@ -41,6 +49,7 @@ void phys_mod::print_phys_mod()
 // function for simulating the model
 void phys_mod::simulate_phys_mod()
 {
+
     size_t iterations = 10;
     for (size_t i = 0; i < iterations; i++)
     {

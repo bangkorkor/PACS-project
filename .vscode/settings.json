@@ -65,6 +65,7 @@
         "map": "cpp",
         "stack": "cpp",
         "fstream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "getpot": "cpp"
     }
 }

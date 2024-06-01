@@ -24,7 +24,7 @@ public:
     void print_mixer();
 
     // function where the model is simulated
-    void set_parameters(double t0, double RPM, double Q);
+    void set_parameters(double t0, double RPM, double Q, string type, string SRtype);
     void simulate_mixer();
 };
 
