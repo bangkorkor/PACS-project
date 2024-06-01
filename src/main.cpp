@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     auto data = d.get_data();
 
     // chose what model to run from the config file
-    int model_number = command_line("model", 0);
+    int model_number = command_line("model", 4);
     auto data_line = data[model_number];
 
     // chose model parameters

@@ -36,6 +36,12 @@ public:
     void set_SRtype(string SRtype);
     string get_SRtype();
     vector<num_mod> get_model(); // getter for the model, this is used in visualize
+    double calculate_pressure_henrik(double RPM, double Q, double T);
+    double calculate_pressure_bharat(double RPM, double Q, double T);
+    double calculate_pressure_ask(double RPM, double Q, double T);
+    double calculate_SR_pressure_standard(double RPM, double Q, double T);
+    double calculate_SR_pressure_extreme(double RPM, double Q, double T);
+
 
     // other functions
     void make_model(size_t n);
