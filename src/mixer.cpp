@@ -1,4 +1,7 @@
 #include "mixer.hpp"
+#include <cmath>
+#include <sstream>
+#include <iomanip>
 
 mixer::mixer(size_t number_pm, size_t number_nn)
 {
@@ -9,21 +12,24 @@ mixer::mixer(size_t number_pm, size_t number_nn)
 }
 
 // getter
-vector<phys_mod> mixer::get_screw() { return screw; } // is needed for vizulize class
+std::vector<phys_mod> mixer::get_screw() { return screw; } // is needed for vizulize class
 
 void mixer::print_mixer()
 {
-    cout << "------Mixer:------" << endl;
+    std::cout << "------Mixer:------" << std::endl;
     for (size_t i = 0; i < screw.size(); i++)
     {
         screw[i].print_phys_mod();
     }
 }
 
-void mixer::set_parameters(double t0, double RPM, double Q, string type, string SRtype)
+void mixer::set_parameters(double t0, double RPM, double Q, const std::string &type, const std::string &SRtype)
 {
-    t_0 = t0;
-    p_0 = 0;
+    string_parameters["type"] = type;
+    string_parameters["SRtype"] = SRtype;
+    parameters["t0"] = t0;
+    parameters["RPM"] = RPM;
+    parameters["Q"] = Q;
     for (size_t i = 0; i < screw.size(); i++)
     {
         screw[i].set_RPM(RPM);
@@ -33,17 +39,33 @@ void mixer::set_parameters(double t0, double RPM, double Q, string type, string 
     }
 }
 
+std::vector<std::string> mixer::get_parameters()
+{
+    std::vector<std::string> param_list;
+    for (const auto &param : parameters)
+    {
+        std::ostringstream oss;
+        oss << std::fixed << std::setprecision(2) << param.second;
+        param_list.push_back(param.first + "=" + oss.str());
+    }
+    for (const auto &param : string_parameters)
+    {
+        param_list.push_back(param.first + "=" + param.second);
+    }
+    return param_list;
+}
+
 void mixer::simulate_mixer()
-{   
+{
     // set the initial temperature
     for (size_t i = 0; i < screw.size(); i++)
     {
-        screw[i].set_tIn(t_0);
+        screw[i].set_tIn(parameters["t0"]);
     }
 
     int iter = 1000;
     for (int i = 0; i < iter; i++)
-    {   
+    {
         // iterate going backwards
         for (int j = static_cast<int>(screw.size()) - 1; j >= 0; j--)
         {
@@ -59,5 +81,4 @@ void mixer::simulate_mixer()
             }
         }
     }
-
 }

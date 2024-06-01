@@ -66,6 +66,7 @@
         "stack": "cpp",
         "fstream": "cpp",
         "iomanip": "cpp",
-        "getpot": "cpp"
+        "getpot": "cpp",
+        "xstring": "cpp"
     }
 }
