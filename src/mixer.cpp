@@ -34,37 +34,30 @@ void mixer::set_parameters(double t0, double RPM, double Q, string type, string 
 }
 
 void mixer::simulate_mixer()
-{
-    // set the initial temperature, set all screws to the same temperature
+{   
+    // set the initial temperature
     for (size_t i = 0; i < screw.size(); i++)
     {
         screw[i].set_tIn(t_0);
     }
 
-    size_t iter = 100;
-    for (size_t i = 0; i < iter; i++)
-    {
-        for (size_t i = 0; i < screw.size(); i++)
+    int iter = 1000;
+    for (int i = 0; i < iter; i++)
+    {   
+        // iterate going backwards
+        for (int j = static_cast<int>(screw.size()) - 1; j >= 0; j--)
         {
-        screw[i].update_p();
-        // update the temperature of the incoming fluid
-        if (i < screw.size() - 1)
-        {
-            screw[i + 1].set_tIn(screw[i].get_tOut());
-            }
+            screw[j].update_p();
         }
-
-    for (size_t i = 0; i < screw.size(); i++)
+        for (size_t j = 0; j < screw.size(); j++)
         {
-        screw[i].update_t();
-        // update the temperature of the incoming fluid
-        if (i < screw.size() - 1)
-        {
-            screw[i + 1].set_tIn(screw[i].get_tOut());
+            screw[j].update_t();
+            // update the temperature of the next phys_mod
+            if (j != screw.size() - 1)
+            {
+                screw[j + 1].set_tIn(screw[j].get_tOut());
             }
         }
     }
-    
 
-    
 }

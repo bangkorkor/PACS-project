@@ -90,6 +90,7 @@ void phys_mod::update_t()
     for (size_t i = 0; i < model.size(); i++)
     {
         double new_t = 0; // new computed temperature for the given num_mod
+
         if (i == 0)
         {
             new_t = tIn + 5 * RPM / Q * exp((300 - model[i].get_t()) / 20);
@@ -98,6 +99,12 @@ void phys_mod::update_t()
         else
         {
             new_t = model[i - 1].get_t() + 5 * RPM / Q * exp((300 - model[i].get_t()) / 20);
+            model[i].set_t(new_t);
+        }
+        // temperature change in Stopring
+        if (i == model.size() - 1)
+        {
+            new_t = model[i - 1].get_t() + 5;
             model[i].set_t(new_t);
         }
     }
