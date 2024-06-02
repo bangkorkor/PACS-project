@@ -6,7 +6,6 @@ print("Script started...")  # Debug print
 
 # Load the data
 data = pd.read_csv('build/plotting_data.csv')
-print("Data loaded:", data.head())  # Debug print: Show first few rows of data
 
 # Extract parameters from command-line arguments
 params = sys.argv[1:]

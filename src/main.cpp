@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     d.read_csv(config_filename);
     auto data = d.get_data();
 
-    int model_number = command_line("model", 4);
+    int model_number = command_line("model", 5);
     auto data_line = data[model_number];
 
     size_t number_of_phys_mods = command_line("npm", stoi(data_line[2]));
