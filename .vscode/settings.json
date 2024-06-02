@@ -67,6 +67,8 @@
         "fstream": "cpp",
         "iomanip": "cpp",
         "getpot": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "__verbose_abort": "cpp",
+        "execution": "cpp"
     }
 }

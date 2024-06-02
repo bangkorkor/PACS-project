@@ -41,6 +41,9 @@ public:
     double calculate_pressure_ask(double RPM, double Q, double T);
     double calculate_SR_pressure_standard(double RPM, double Q, double T);
     double calculate_SR_pressure_extreme(double RPM, double Q, double T);
+    double calculate_temperature_henrik(double RPM, double Q, double T);
+    double calculate_temperature_bharat(double RPM, double Q, double T);
+    double calculate_temperature_ask(double RPM, double Q, double T);
 
 
     // other functions

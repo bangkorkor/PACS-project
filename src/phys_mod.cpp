@@ -58,12 +58,24 @@ void phys_mod::simulate_phys_mod()
     }
 }
 
+double phys_mod::calculate_temperature_henrik(double RPM, double Q, double T){
+    return 5 * RPM / Q * exp((300 - T) / 20);
+}
+
+double phys_mod::calculate_temperature_bharat(double RPM, double Q, double T){
+    return 5 * RPM / Q * (exp((300 - T) / 20) + 0.01 * T);
+}
+
+double phys_mod::calculate_temperature_ask(double RPM, double Q, double T){
+    return 5 * RPM / Q * exp((300 - T) / 25);
+}
+
 double phys_mod::calculate_pressure_henrik(double RPM, double Q, double T) {
     return (800 * RPM + 500 * (250 - Q)) * ((450 - T) / 150);
 }
 
 double phys_mod::calculate_pressure_bharat(double RPM, double Q, double T) {
-    return (8000 * RPM + 1500 * (300 - Q) + 500 * std::pow(Q, 2)) * ((500 - std::pow(T, 2)) / 2);
+    return (8000 * RPM + 1500 * (300 - Q) + 500 * pow(Q, 2)) * ((500 - pow(T, 2)) / 2);
 }
 
 double phys_mod::calculate_pressure_ask(double RPM, double Q, double T) {
@@ -124,12 +136,28 @@ void phys_mod::update_t()
 
         if (i == 0)
         {
-            new_t = tIn + 5 * RPM / Q * exp((300 - model[i].get_t()) / 20);
+            if (type == "Henrik") {
+                new_t = tIn + calculate_temperature_henrik(RPM, Q, model[i].get_t());
+            }
+            else if (type == "Bharat") {
+                new_t = tIn + calculate_temperature_bharat(RPM, Q, model[i].get_t());
+            }
+            else if (type == "Ask") {
+                new_t = tIn + calculate_temperature_ask(RPM, Q, model[i].get_t());
+            }
             model[i].set_t(new_t);
         }
         else
         {
-            new_t = model[i - 1].get_t() + 5 * RPM / Q * exp((300 - model[i].get_t()) / 20);
+            if (type == "Henrik") {
+                new_t = model[i - 1].get_t() + calculate_temperature_henrik(RPM, Q, model[i].get_t());
+            }
+            else if (type == "Bharat") {
+                new_t = model[i - 1].get_t() + calculate_temperature_bharat(RPM, Q, model[i].get_t());
+            }
+            else if (type == "Ask") {
+                new_t = model[i - 1].get_t() + calculate_temperature_ask(RPM, Q, model[i].get_t());
+            }
             model[i].set_t(new_t);
         }
         // temperature change in Stopring
