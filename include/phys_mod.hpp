@@ -43,8 +43,7 @@ public:
     double calculate_SR_pressure_extreme(double RPM, double Q, double T);
     double calculate_temperature_henrik(double RPM, double Q, double T);
     double calculate_temperature_bharat(double RPM, double Q, double T);
-    double calculate_temperature_ask(double RPM, double Q, double T);
-
+    double calculate_temperature_ask(double RPM, double Q, double T, double Tprev);
 
     // other functions
     void make_model(size_t n);

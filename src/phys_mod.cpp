@@ -66,12 +66,12 @@ double phys_mod::calculate_temperature_henrik(double RPM, double Q, double T)
 
 double phys_mod::calculate_temperature_bharat(double RPM, double Q, double T)
 {
-    return 5 * RPM / Q * (exp((300 - T) / 20) + 0.01 * T);
+    return 5 * RPM / Q * sqrt(5 / T);
 }
 
-double phys_mod::calculate_temperature_ask(double RPM, double Q, double T)
+double phys_mod::calculate_temperature_ask(double RPM, double Q, double T, double Tprev) // TODO: remove Tprev
 {
-    return 5 * RPM / Q * exp((300 - T) / 25);
+    return 4 * RPM / Q * (T / 500);
 }
 
 double phys_mod::calculate_pressure_henrik(double RPM, double Q, double T)
@@ -81,29 +81,27 @@ double phys_mod::calculate_pressure_henrik(double RPM, double Q, double T)
 
 double phys_mod::calculate_pressure_bharat(double RPM, double Q, double T)
 {
-    return (8000 * RPM + 1500 * (300 - Q) + 500 * pow(Q, 2)) * ((500 - pow(T, 2)) / 2);
+    return (5000 * RPM + 800 * (250 - Q)) * ((450 - T) / 150);
 }
 
 double phys_mod::calculate_pressure_ask(double RPM, double Q, double T)
 {
-    return (10000 * std::log(RPM + 1) + 2500 * std::sin(300 - Q) + 1000 * std::exp(Q / 100) + 500 * std::sinh(Q / 50)) *
-           ((std::cos(M_PI * T / 450) / 150) + std::cosh(T / 100) + std::tanh(T / 100));
+    return (10000 * RPM + 2000 * (250 - Q)) * ((450 - T) / 150);
 }
 
 double phys_mod::calculate_SR_pressure_standard(double RPM, double Q, double T)
 {
-    return (20000 * (200 - RPM) + 10000 * Q) * ((450 - T) / 150);
+    return (20000 * (200 - RPM) + 10000 * Q) * ((500 - T) / 150);
 }
 
 double phys_mod::calculate_SR_pressure_extreme(double RPM, double Q, double T)
 {
-    return (20000 * (200 - RPM) + 10000 * Q) * ((450 - T) / 69);
+    return (30000 * (200 - RPM) + 10000 * Q) * ((500 - T) / 150);
 }
 
 // function for updating pressure
 void phys_mod::update_p()
 {
-
     // starting from the last element, going backwards
     for (int i = model.size() - 1; i >= 0; i--)
     {
@@ -163,7 +161,7 @@ void phys_mod::update_t()
             }
             else if (type == "Ask")
             {
-                new_t = tIn + calculate_temperature_ask(RPM, Q, model[i].get_t());
+                new_t = tIn + calculate_temperature_ask(RPM, Q, model[i].get_t(), model[i - 1].get_t());
             }
             model[i].set_t(new_t);
         }
@@ -179,7 +177,7 @@ void phys_mod::update_t()
             }
             else if (type == "Ask")
             {
-                new_t = model[i - 1].get_t() + calculate_temperature_ask(RPM, Q, model[i].get_t());
+                new_t = model[i - 1].get_t() + calculate_temperature_ask(RPM, Q, model[i].get_t(), model[i - 1].get_t());
             }
         }
         // temperature change in Stopring
@@ -187,7 +185,7 @@ void phys_mod::update_t()
         {
             if (SRtype == "Extreme")
             {
-                new_t = model[i - 1].get_t() + 1000 / model[i].get_t();
+                new_t = model[i - 1].get_t() + 0.01 * model[i].get_t();
             }
             // if SRtype is Standard, do nothing
         }

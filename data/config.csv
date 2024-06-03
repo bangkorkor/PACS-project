@@ -1,8 +1,12 @@
 ﻿type,SRtype,npm,nnm,tIn,RPM,Q
 Ask,Standard,2,40,293,100,150
+Ask,Standard,2,40,293,150,250
 Ask,Extreme,2,40,293,100,150
-Bharat,Standard,2,40,293,125,200
-Bharat,Extreme,2,40,293,125,200
+Ask,Extreme,2,40,293,150,250
+Bharat,Standard,2,40,293,100,150
+Bharat,Standard,2,40,293,150,250
+Bharat,Extreme,2,40,293,100,150
+Bharat,Extreme,2,40,293,150,250
 Henrik,Standard,2,40,293,100,150
 Henrik,Standard,2,40,293,150,250
 Henrik,Extreme,2,40,293,100,150
