@@ -23,34 +23,36 @@ public:
     // constructor
     phys_mod(size_t size);
 
-    // getters and setters
+    // setters
     void set_tIn(double tIn);
-    double get_tIn();
-    double get_tOut();
     void set_RPM(double RPM);
-    double get_RPM();
     void set_Q(double Q);
-    double get_Q();
     void set_type(string type);
-    string get_type();
     void set_SRtype(string SRtype);
-    string get_SRtype();
-    vector<num_mod> get_model(); // getter for the model, this is used in visualize
-    double calculate_pressure_henrik(double RPM, double Q, double T);
-    double calculate_pressure_bharat(double RPM, double Q, double T);
-    double calculate_pressure_ask(double RPM, double Q, double T);
-    double calculate_SR_pressure_standard(double RPM, double Q, double T);
-    double calculate_SR_pressure_extreme(double RPM, double Q, double T);
-    double calculate_temperature_henrik(double RPM, double Q, double T);
-    double calculate_temperature_bharat(double RPM, double Q, double T);
-    double calculate_temperature_ask(double RPM, double Q, double T, double Tprev);
+
+    // getters
+    double get_tIn() const;
+    double get_tOut();
+    double get_RPM() const;
+    double get_Q() const;
+    string get_type() const;
+    string get_SRtype() const;
+    vector<num_mod> get_model() const; // getter for the model, this is used in visualize
+
+    double calculate_pressure_henrik(double RPM, double Q, double T) const;
+    double calculate_pressure_bharat(double RPM, double Q, double T) const;
+    double calculate_pressure_ask(double RPM, double Q, double T) const;
+    double calculate_SR_pressure_standard(double RPM, double Q, double T) const;
+    double calculate_SR_pressure_extreme(double RPM, double Q, double T) const;
+    double calculate_temperature_henrik(double RPM, double Q, double T) const;
+    double calculate_temperature_bharat(double RPM, double Q, double T) const;
+    double calculate_temperature_ask(double RPM, double Q, double T) const;
 
     // other functions
     void make_model(size_t n);
     void print_phys_mod();
 
     // function where the model is simulated
-    void simulate_phys_mod();
     void update_p();
     void update_t();
 };
