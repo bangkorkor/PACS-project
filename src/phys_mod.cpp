@@ -66,7 +66,7 @@ double phys_mod::calculate_temperature_henrik(double RPM, double Q, double T)
 
 double phys_mod::calculate_temperature_bharat(double RPM, double Q, double T)
 {
-    return 5 * RPM / Q * sqrt(5 / T);
+    return 5 * RPM / Q * exp((300 - T) / 20) + T/700;
 }
 
 double phys_mod::calculate_temperature_ask(double RPM, double Q, double T, double Tprev) // TODO: remove Tprev
