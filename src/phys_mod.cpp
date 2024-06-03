@@ -81,12 +81,12 @@ double phys_mod::calculate_pressure_henrik(double RPM, double Q, double T)
 
 double phys_mod::calculate_pressure_bharat(double RPM, double Q, double T)
 {
-    return (5000 * RPM + 800 * (250 - Q)) * ((450 - T) / 150);
+    return (1000* RPM + 800 * (250 - Q)) * ((450 - T) / 150);
 }
 
 double phys_mod::calculate_pressure_ask(double RPM, double Q, double T)
 {
-    return (10000 * RPM + 2000 * (250 - Q)) * ((450 - T) / 150);
+    return (10000 * RPM + 2000 * (250 - Q)) * ((470 - T) / 150);
 }
 
 double phys_mod::calculate_SR_pressure_standard(double RPM, double Q, double T)
