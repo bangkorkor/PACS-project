@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include "phys_mod.hpp"
 #include "num_mod.hpp"
 #include "mixer.hpp"
@@ -32,13 +33,18 @@ int main(int argc, char **argv)
 
     m.set_parameters(t0, RPM, Q, data_line[0], data_line[1]); // Set parameters
 
+    auto start_time = chrono::high_resolution_clock::now(); // Start timer
     m.simulate_mixer();
+    auto end_time = chrono::high_resolution_clock::now(); // End timer
+
     m.print_mixer();
 
     vector<string> parameters = m.get_parameters(); // Retrieve formatted parameters from mixer
 
     visualize v(m, parameters); // Create visualization with parameters
     v.vizualize_screw();        // Generate visualization
+
+    cout << "Simulation took: " << chrono::duration_cast<chrono::microseconds>(end_time - start_time).count() << " microseconds" << endl;
 
     return 0;
 }
