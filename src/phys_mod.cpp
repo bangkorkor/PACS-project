@@ -38,34 +38,34 @@ void phys_mod::print_phys_mod()
 }
 
 // functions for calculating used in update_p and update_t
-double phys_mod::calculate_temperature_henrik(double RPM, double Q, double T) const
-{
-    return 5 * RPM / Q * exp((300 - T) / 20);
-}
-
-double phys_mod::calculate_temperature_bharat(double RPM, double Q, double T) const
-{
-    return 5 * RPM / Q * exp((300 - T) / 20) + T / 700;
-}
-
-double phys_mod::calculate_temperature_ask(double RPM, double Q, double T) const
+double phys_mod::calculate_temperature_type1(double RPM, double Q, double T) const
 {
     return 4 * RPM / Q * (T / 500);
 }
 
-double phys_mod::calculate_pressure_henrik(double RPM, double Q, double T) const
+double phys_mod::calculate_temperature_type2(double RPM, double Q, double T) const
 {
-    return (10000 * RPM + 2000 * (250 - Q)) * ((450 - T) / 150);
+    return 5 * RPM / Q * exp((300 - T) / 20) + T / 700;
 }
 
-double phys_mod::calculate_pressure_bharat(double RPM, double Q, double T) const
+double phys_mod::calculate_temperature_type3(double RPM, double Q, double T) const
+{
+    return 5 * RPM / Q * exp((300 - T) / 20);
+}
+
+double phys_mod::calculate_pressure_type1(double RPM, double Q, double T) const
+{
+    return (10000 * RPM + 2000 * (250 - Q)) * ((470 - T) / 150);
+}
+
+double phys_mod::calculate_pressure_type2(double RPM, double Q, double T) const
 {
     return (1000 * RPM + 800 * (250 - Q)) * ((450 - T) / 150);
 }
 
-double phys_mod::calculate_pressure_ask(double RPM, double Q, double T) const
+double phys_mod::calculate_pressure_type3(double RPM, double Q, double T) const
 {
-    return (10000 * RPM + 2000 * (250 - Q)) * ((470 - T) / 150);
+    return (10000 * RPM + 2000 * (250 - Q)) * ((450 - T) / 150);
 }
 
 double phys_mod::calculate_SR_pressure_standard(double RPM, double Q, double T) const
@@ -73,7 +73,7 @@ double phys_mod::calculate_SR_pressure_standard(double RPM, double Q, double T) 
     return (20000 * (200 - RPM) + 10000 * Q) * ((500 - T) / 150);
 }
 
-double phys_mod::calculate_SR_pressure_extreme(double RPM, double Q, double T) const
+double phys_mod::calculate_SR_pressure_special(double RPM, double Q, double T) const
 {
     return (30000 * (200 - RPM) + 10000 * Q) * ((500 - T) / 150);
 }
@@ -91,24 +91,24 @@ void phys_mod::update_p()
             {
                 new_p = calculate_SR_pressure_standard(RPM, Q, model[i].get_t());
             }
-            else if (SRtype == "Extreme")
+            else if (SRtype == "Special")
             {
-                new_p = calculate_SR_pressure_extreme(RPM, Q, model[i].get_t());
+                new_p = calculate_SR_pressure_special(RPM, Q, model[i].get_t());
             }
         }
         else
         {
-            if (type == "Henrik")
+            if (type == "Type1")
             {
-                new_p = model[i + 1].get_p() - calculate_pressure_henrik(RPM, Q, model[i].get_t());
+                new_p = model[i + 1].get_p() - calculate_pressure_type1(RPM, Q, model[i].get_t());
             }
-            else if (type == "Bharat")
+            else if (type == "Type2")
             {
-                new_p = model[i + 1].get_p() - calculate_pressure_bharat(RPM, Q, model[i].get_t());
+                new_p = model[i + 1].get_p() - calculate_pressure_type2(RPM, Q, model[i].get_t());
             }
-            else if (type == "Ask")
+            else if (type == "Type3")
             {
-                new_p = model[i + 1].get_p() - calculate_pressure_ask(RPM, Q, model[i].get_t());
+                new_p = model[i + 1].get_p() - calculate_pressure_type3(RPM, Q, model[i].get_t());
             }
         }
         if (new_p < 0)
@@ -130,39 +130,39 @@ void phys_mod::update_t()
 
         if (i == 0) // sets tIn for the fist num_mod in the phys_mod
         {
-            if (type == "Henrik")
+            if (type == "Type1")
             {
-                new_t = tIn + calculate_temperature_henrik(RPM, Q, model[i].get_t());
+                new_t = tIn + calculate_temperature_type1(RPM, Q, model[i].get_t());
             }
-            else if (type == "Bharat")
+            else if (type == "Type2")
             {
-                new_t = tIn + calculate_temperature_bharat(RPM, Q, model[i].get_t());
+                new_t = tIn + calculate_temperature_type3(RPM, Q, model[i].get_t());
             }
-            else if (type == "Ask")
+            else if (type == "Type3")
             {
-                new_t = tIn + calculate_temperature_ask(RPM, Q, model[i].get_t());
+                new_t = tIn + calculate_temperature_type3(RPM, Q, model[i].get_t());
             }
             model[i].set_t(new_t);
-        }
+        } 
         else
         {
-            if (type == "Henrik")
+            if (type == "Type1")
             {
-                new_t = model[i - 1].get_t() + calculate_temperature_henrik(RPM, Q, model[i].get_t());
+                new_t = model[i - 1].get_t() + calculate_temperature_type1(RPM, Q, model[i].get_t());
             }
-            else if (type == "Bharat")
+            else if (type == "Type2")
             {
-                new_t = model[i - 1].get_t() + calculate_temperature_bharat(RPM, Q, model[i].get_t());
+                new_t = model[i - 1].get_t() + calculate_temperature_type3(RPM, Q, model[i].get_t());
             }
-            else if (type == "Ask")
+            else if (type == "Type3")
             {
-                new_t = model[i - 1].get_t() + calculate_temperature_ask(RPM, Q, model[i].get_t());
+                new_t = model[i - 1].get_t() + calculate_temperature_type3(RPM, Q, model[i].get_t());
             }
         }
         // temperature change in Stopring
         if (i == model.size() - 1)
         {
-            if (SRtype == "Extreme")
+            if (SRtype == "Special")
             {
                 new_t = model[i - 1].get_t() + 0.01 * model[i].get_t();
             }
