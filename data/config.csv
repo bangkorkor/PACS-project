@@ -1,14 +1,14 @@
 ﻿type,SRtype,npm,nnm,tIn,RPM,Q
-Ask,Standard,2,40,293,100,150
-Ask,Standard,2,40,293,150,250
-Ask,Extreme,2,40,293,100,150
-Ask,Extreme,2,40,293,150,250
-Bharat,Standard,2,40,293,100,150
-Bharat,Standard,2,40,293,150,250
-Bharat,Extreme,2,40,293,100,150
-Bharat,Extreme,2,40,293,150,250
-Henrik,Standard,2,40,293,100,150
-Henrik,Standard,2,40,293,150,250
-Henrik,Extreme,2,40,293,100,150
-Henrik,Extreme,2,40,293,150,250
+Type1,Standard,2,40,293,100,150
+Type1,Standard,2,40,293,150,250
+Type1,Special,2,40,293,100,150
+Type1,Special,2,40,293,150,250
+Type2,Standard,2,40,293,100,150
+Type2,Standard,2,40,293,150,250
+Type2,Special,2,40,293,100,150
+Type2,Special,2,40,293,150,250
+Type3,Standard,2,40,293,100,150
+Type3,Standard,2,40,293,150,250
+Type3,Special,2,40,293,100,150
+Type3,Special,2,40,293,150,250
 
