@@ -2,7 +2,7 @@
 CXX=g++
 
 # Compiler flags
-CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc) -I${mkGslInc} -Wno-deprecated-enum-enum-conversion
+CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc) -I${mkGslInc} -Wno-deprecated-enum-enum-conversion -fopenmp
 
 # Linker flags
 LDFLAGS=-L${mkGslLib} -lgsl -lgslcblas
