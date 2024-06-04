@@ -63,7 +63,7 @@ void mixer::simulate_mixer()
         screw[i].set_tIn(parameters["t0"]);
     }
 
-    int iter = 1000;
+    int iter = 20;
     for (int i = 0; i < iter; i++)
     {
         // iterate going backwards

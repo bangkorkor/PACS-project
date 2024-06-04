@@ -39,14 +39,13 @@ public:
     string get_SRtype() const;
     vector<num_mod> get_model() const; // getter for the model, this is used in visualize
 
-    double calculate_pressure_type1(double RPM, double Q, double T) const;
-    double calculate_pressure_type2(double RPM, double Q, double T) const;
-    double calculate_pressure_type3(double RPM, double Q, double T) const;
-    double calculate_SR_pressure_standard(double RPM, double Q, double T) const;
-    double calculate_SR_pressure_special(double RPM, double Q, double T) const;
-    double calculate_temperature_type1(double RPM, double Q, double T) const;
-    double calculate_temperature_type3(double RPM, double Q, double T) const;
-    double calculate_temperature_type2(double RPM, double Q, double T) const;
+    double dp_type1(double RPM, double Q, double T) const;
+    double dp_type2(double RPM, double Q, double T) const;
+    double dp_type3(double RPM, double Q, double T) const;
+    double dp_SR(double RPM, double Q, double T) const;
+    double dt_type1(double RPM, double Q, double T) const;
+    double dt_type3(double RPM, double Q, double T) const;
+    double dt_type2(double RPM, double Q, double T) const;
 
     // other functions
     void make_model(size_t n);
