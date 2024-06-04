@@ -12,7 +12,7 @@ mixer::mixer(size_t number_pm, size_t number_nn)
 }
 
 // getter
-std::vector<phys_mod> mixer::get_screw() { return screw; } // is needed for vizulize class
+std::vector<phys_mod> mixer::get_screw() { return screw; } // is needed for visualize class
 
 void mixer::print_mixer()
 {
@@ -57,28 +57,65 @@ std::vector<std::string> mixer::get_parameters()
 
 void mixer::simulate_mixer()
 {
+    const int max_iter = 20;
+    double temp_convergence_threshold = 0.01; // Threshold for temperature convergence
+    double press_convergence_threshold = 1.0; // Threshold for pressure convergence
+    bool is_converged = false;
+    std::vector<double> last_temps(screw.size());
+    std::vector<double> last_presses(screw.size());
+
+    // Initialize last temperatures and pressures
+    for (size_t i = 0; i < screw.size(); i++)
+    {
+        last_temps[i] = screw[i].get_tOut();
+        last_presses[i] = screw[i].get_model().back().get_p();
+    }
+
     // set the initial temperature
     for (size_t i = 0; i < screw.size(); i++)
     {
         screw[i].set_tIn(parameters["t0"]);
     }
 
-    int iter = 20;
-    for (int i = 0; i < iter; i++)
+    int iter = 0;
+    while (iter < max_iter && !is_converged)
     {
-        // iterate going backwards
+        is_converged = true;
+
+        // iterate going backwards for pressures
         for (int j = static_cast<int>(screw.size()) - 1; j >= 0; j--)
         {
             screw[j].update_p();
         }
+
+        // update temperatures and check convergence
         for (size_t j = 0; j < screw.size(); j++)
         {
+            double old_temp = last_temps[j];
+            double old_press = last_presses[j];
             screw[j].update_t();
-            // update the temperature of the next phys_mod
+
             if (j != screw.size() - 1)
             {
                 screw[j + 1].set_tIn(screw[j].get_tOut());
             }
+
+            last_temps[j] = screw[j].get_tOut();
+            last_presses[j] = screw[j].get_model().back().get_p();
+
+            // Check convergence for both temperature and pressure
+            if (fabs(old_temp - last_temps[j]) > temp_convergence_threshold ||
+                fabs(old_press - last_presses[j]) > press_convergence_threshold)
+            {
+                is_converged = false;
+            }
         }
+        iter++;
     }
+
+    // Optionally print convergence status
+    if (is_converged)
+        std::cout << "Convergence achieved." << std::endl;
+    else
+        std::cout << "Convergence not achieved within " << max_iter << " iterations." << std::endl;
 }

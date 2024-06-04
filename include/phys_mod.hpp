@@ -54,6 +54,7 @@ public:
     // function where the model is simulated
     void update_p();
     void update_t();
+    bool isConverged();
 };
 
 #endif // PHYS_MOD_HPP
