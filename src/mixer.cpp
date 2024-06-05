@@ -57,7 +57,7 @@ std::vector<std::string> mixer::get_parameters()
 
 void mixer::simulate_mixer()
 {
-    const int max_iter = 2000;
+    const int max_iter = 100;
     double temp_convergence_threshold = 0.0001; // Threshold for temperature convergence
     double press_convergence_threshold = 0.001; // Threshold for pressure convergence
     bool is_converged = false;

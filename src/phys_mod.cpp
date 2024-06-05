@@ -141,7 +141,7 @@ void phys_mod::update_t()
             }
             else if (type == "Type2")
             {
-                new_t = model[i - 1].get_t() + dt_type3(RPM, Q, model[i].get_t());
+                new_t = model[i - 1].get_t() + dt_type2(RPM, Q, model[i].get_t());
             }
             else if (type == "Type3")
             {
