@@ -3,11 +3,11 @@
 #include <sstream>
 #include <iomanip>
 
-mixer::mixer(size_t number_pm, size_t number_nn)
+mixer::mixer(size_t number_pm, size_t number_nm)
 {
     for (size_t i = 0; i < number_pm; i++)
     {
-        screw.push_back(phys_mod(number_nn));
+        screw.push_back(phys_mod(number_nm));
     }
 }
 

@@ -25,7 +25,7 @@ public:
     void set_t(double t);
     void set_p(double p);
 
-    // other functions
+    // printing function
     void print_num_mod();
 };
 

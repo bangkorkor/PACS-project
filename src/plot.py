@@ -2,8 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import sys
 
-print("Script started...")  # Debug print
-
 # Load the data
 data = pd.read_csv('build/plotting_data.csv')
 
@@ -40,7 +38,6 @@ plt.ylabel('Temperature (K)')
 plt.legend()
 plt.grid(True)
 plt.savefig('build/Temperature_Plot.png')
-print("Temperature plot saved.")  # Debug print
 plt.close()  # Close the figure to avoid display
 
 # Plot Pressure
@@ -52,7 +49,4 @@ plt.ylabel('Pressure (Pa)')
 plt.legend()
 plt.grid(True)
 plt.savefig('build/Pressure_Plot.png')
-print("Pressure plot saved.")  # Debug print
 plt.close()  # Close the figure to avoid display
-
-print("Script completed.")  # Debug print

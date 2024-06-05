@@ -2,10 +2,7 @@
 CXX=g++
 
 # Compiler flags
-CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc) -I${mkGslInc} -Wno-deprecated-enum-enum-conversion
-
-# Linker flags
-LDFLAGS=-L${mkGslLib} -lgsl -lgslcblas
+CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc) 
 
 # Directory for built executables and objects
 BUILDDIR=build

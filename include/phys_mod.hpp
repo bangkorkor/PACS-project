@@ -19,6 +19,15 @@ private:
     string type;           // type of the phys_mod, what type of formula
     string SRtype;         // type of the SR, what type o formula for Stopring
 
+    // calculation functions only used in the class(they are private)
+    double dp_type1(double RPM, double Q, double T) const;
+    double dp_type2(double RPM, double Q, double T) const;
+    double dp_type3(double RPM, double Q, double T) const;
+    double dp_SR(double RPM, double Q, double T) const;
+    double dt_type1(double RPM, double Q, double T) const;
+    double dt_type3(double RPM, double Q, double T) const;
+    double dt_type2(double RPM, double Q, double T) const;
+
 public:
     // constructor
     phys_mod(size_t size);
@@ -39,16 +48,7 @@ public:
     string get_SRtype() const;
     vector<num_mod> get_model() const; // getter for the model, this is used in visualize
 
-    double dp_type1(double RPM, double Q, double T) const;
-    double dp_type2(double RPM, double Q, double T) const;
-    double dp_type3(double RPM, double Q, double T) const;
-    double dp_SR(double RPM, double Q, double T) const;
-    double dt_type1(double RPM, double Q, double T) const;
-    double dt_type3(double RPM, double Q, double T) const;
-    double dt_type2(double RPM, double Q, double T) const;
-
-    // other functions
-    void make_model(size_t n);
+    // printing function
     void print_phys_mod();
 
     // function where the model is simulated

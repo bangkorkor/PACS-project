@@ -1,7 +1,7 @@
 #include "visualize.hpp"
 #include <iostream>
 #include <fstream>
-#include <cmath> // For math functions
+#include <cmath>
 
 visualize::visualize(mixer m, const std::vector<std::string> &params) : parameters(params)
 {
@@ -45,5 +45,5 @@ void visualize::vizualize_screw()
     {
         command += " " + param;
     }
-    system(command.c_str()); // Ensure that the python command is configured correctly in your environment
+    system(command.c_str());
 }

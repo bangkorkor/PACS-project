@@ -69,6 +69,7 @@
         "getpot": "cpp",
         "xstring": "cpp",
         "__verbose_abort": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "numeric": "cpp"
     }
 }

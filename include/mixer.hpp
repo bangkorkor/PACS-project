@@ -19,7 +19,7 @@ private:
 
 public:
     // constructor
-    mixer(size_t number_pm, size_t number_nn);
+    mixer(size_t number_pm, size_t number_nm);
 
     // getters and setters
     std::vector<phys_mod> get_screw();
