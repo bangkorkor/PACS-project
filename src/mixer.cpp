@@ -57,9 +57,9 @@ std::vector<std::string> mixer::get_parameters()
 
 void mixer::simulate_mixer()
 {
-    const int max_iter = 20;
-    double temp_convergence_threshold = 0.01; // Threshold for temperature convergence
-    double press_convergence_threshold = 1.0; // Threshold for pressure convergence
+    const int max_iter = 2000;
+    double temp_convergence_threshold = 0.0001; // Threshold for temperature convergence
+    double press_convergence_threshold = 0.001; // Threshold for pressure convergence
     bool is_converged = false;
     std::vector<double> last_temps(screw.size());
     std::vector<double> last_presses(screw.size());
@@ -80,7 +80,6 @@ void mixer::simulate_mixer()
     int iter = 0;
     while (iter < max_iter && !is_converged)
     {
-        is_converged = true;
 
         // iterate going backwards for pressures
         for (int j = static_cast<int>(screw.size()) - 1; j >= 0; j--)
@@ -104,18 +103,13 @@ void mixer::simulate_mixer()
             last_presses[j] = screw[j].get_model().back().get_p();
 
             // Check convergence for both temperature and pressure
-            if (fabs(old_temp - last_temps[j]) > temp_convergence_threshold ||
-                fabs(old_press - last_presses[j]) > press_convergence_threshold)
+            if (fabs(old_temp - last_temps[j]) < temp_convergence_threshold &&
+                fabs(old_press - last_presses[j]) < press_convergence_threshold)
             {
-                is_converged = false;
+                is_converged = true;
             }
         }
         iter++;
     }
-
-    // Optionally print convergence status
-    if (is_converged)
-        std::cout << "Convergence achieved." << std::endl;
-    else
-        std::cout << "Convergence not achieved within " << max_iter << " iterations." << std::endl;
+    cout << "Simulation took: " << iter << " iterations" << endl;
 }
