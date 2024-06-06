@@ -44,7 +44,9 @@ int main(int argc, char **argv)
     visualize v(m, parameters); // Create visualization with parameters
     v.vizualize_screw();        // Generate visualization
 
-    cout << "Simulation took: " << chrono::duration_cast<chrono::microseconds>(end_time - start_time).count() << " microseconds" << endl;
+    cout << "Simulation took: "
+         << chrono::duration_cast<chrono::microseconds>(end_time - start_time).count()
+         << " microseconds" << endl;
 
     return 0;
 }

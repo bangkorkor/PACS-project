@@ -13,7 +13,7 @@ class mixer
 private:
     std::vector<phys_mod> screw;
     double t_0; // initial temperature of the fluid
-    double p_0; // initial pressure of the fluid
+    double p_0; // initial pressure
     std::map<std::string, double> parameters;
     std::map<std::string, std::string> string_parameters;
 
