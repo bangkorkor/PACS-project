@@ -2,7 +2,7 @@
 CXX=g++
 
 # Compiler flags
-CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkEigenInc) -I$(mkBoostInc) 
+CXXFLAGS=-Wall -std=c++20 -Iinclude -I$(mkBoostInc) 
 
 # Directory for built executables and objects
 BUILDDIR=build
